@@ -35,4 +35,7 @@ while(tol>epsilon):
 
     iteration+=1
 
+    x = setXn(a, b)
+
+print(f'Range of possible solutions: [{a:.4f}, {b:.4f}], near {x:.4f}')
 print(f'Total of iterations: {iteration}')
