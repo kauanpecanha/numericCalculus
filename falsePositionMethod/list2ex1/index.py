@@ -9,15 +9,13 @@ x = 0
 iteration = 0
 
 def f(x):
-    return # the function goes here
+    return ((x**3) + (4*(x**2)) - (10))
 
 def setXn(k, l):
-    return ( # esta sintaxe visa melhorar a visualização dos parâmetros - este parênteses determina o resultado como um todo
-            
-                ((k * (f(l))) - (l * (f(k)))) # numerador da fração
+    return (
+                ((k * f(l)) - ((l * f(k))))
                 /
-                ((f(l) - f(k))) # denominador da fração
-
+                (f(l) - f(k))
             )
 
 x = setXn(a, b)
@@ -25,14 +23,14 @@ x = setXn(a, b)
 if((f(a) * f(b)) < 0):
     
     while(f(x) >= epsilon):
-    
+        
         x = setXn(a, b)
 
-        if(f(a) * f(x) < 0):
+        if((f(a) * f(x)) < 0):
             b = x
         else:
             a = x
-    
+        
         iteration += 1
 else:
     print('Não há raízes reais neste intervalo.')
