@@ -1,6 +1,6 @@
 from math import log, ceil
 
-# bissection method
+# iterations estimating 
 
 a = float(input("Entre com o primeiro número do intervalo: "))
 b = float(input("Entre com o segundo número do intervalo: "))
