@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+%matplotlib inline
+import numpy as np
 
 # método de Newton-Raphson
 
@@ -7,34 +10,38 @@ fixedPoint = float(input("Entre com o ponto fixo: "))
 epsilon = float(input('Entre com a tolerância desejada: '))
 maximumIteration = float(input("Entre com o número máximo de iterações: ")) # definição do número máximo de iterações
 
-
-x = 0
-iteration = 0 # variável para controle do número de iterações
-
-# criação das variáveis (acima)
-
-def getFunc(x):
+def f(x):
     return ((x**3) - (2*x**2) - (5))
 
-def getDerivateFunc(x):
+def dF(x):
     return ((3*x**2) - (4*x))
 
 def defineXn(x):
-    return (x - ((getFunc(x))/(getDerivateFunc(x))))
+    return (x - ((f(x))/(dF(x))))
 
-# the functions are working well!
+iteration = 0 # variável para controle do número de iterações
+xf = np.linspace(a-1, b+1, 1000)
 
-while(
-        ((abs(getFunc(fixedPoint))) <= epsilon) # if the modulus os f(x) is less than the epsilon, then, the iteration is going to come to an end
-            or
-        (iteration<maximumIteration) # if the iteration reachs the maximum number set of iterations, then, the iteration is going to come to and end
-    ): 
+print(f'\nITERAÇÃO: {iteration} - \nPonto fixo: {fixedPoint},\n f({fixedPoint}) = {f(fixedPoint)},\n f*({fixedPoint}) = {dF(fixedPoint)}\n')
+x = defineXn(fixedPoint)
 
-    if(iteration == 0):
-        x = defineXn(fixedPoint)
+iteration+=1
+
+while(True):
+    if(iteration<maximumIteration):
+            
+        if(abs(f(x)) >= epsilon):
+            print(f'\nITERAÇÃO: {iteration} - \nCurrent x: {x:.4f},\n f({x:.4f}) = {f(x):.4f},\n f*({x:.4f}) = {dF(x):.4f}\n')
+            x = defineXn(x)
+            print(f'\nITERAÇÃO: {iteration} - \nx foi definido como {x:.4f}\n')
+
+            iteration = iteration + 1
+        
+        else:
+            print(f'\nITERAÇÃO: {iteration} - \n|f({x})| = {abs(f(x)):.4f} < {epsilon}. Ciclos encerrados!')
+            print(f'\nITERAÇÃO: {iteration} - \nRaiz aproximada: {x:.4f}')
+            break
     else:
-        x = defineXn(x)
-    
-    iteration+=1
-
-print(f'O valor final da raiz é {x}, após {iteration} iterações, com precisão de {epsilon}')
+        print(f'\nITERAÇÃO: {iteration} - \nO número máximo de iterações foi atingido!')
+        print(f'\nITERAÇÃO: {iteration} - \nRaiz aproximada: {x}')
+        break
