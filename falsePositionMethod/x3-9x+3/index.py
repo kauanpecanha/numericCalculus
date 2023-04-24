@@ -1,5 +1,5 @@
 
-# método da bisseção(ou valor intermediário?)
+# método da bisseção
 
 a = float(input("Entre com o primeiro número do intervalo: "))
 b = float(input("Entre com o segundo número do intervalo: "))
@@ -20,22 +20,29 @@ def setXn(k, l):
 
         )
 
-x = setXn(a, b)
+plt.scatter(a, f(a), c='red') # destaca o ponto no gráfico que representa a raiz
+plt.scatter(b, f(b), c='red') # destaca o ponto no gráfico que representa a raiz
 
-if((f(a) * f(b)) < 0):
+while(True):
+    
+    x = setXn(a, b) # 0.3386
 
-    while(f(x) >= epsilon):
-        
-        x = setXn(a, b)
+    print(f'k = {iteration} ; a = {a:.4f} ; b = {b:.4f} ; f({a:.4f}) = {f(a):.4f} ; f({b:.4f}) = {f(b):.4f} ; xk = {x:.4f} ; |f({x:.4f})| = { (abs(f(x))) }')
+    
+    if( abs( f(x) ) < epsilon): # se 0.008 < 0.065
 
-        if(f(a) * f(x) < 0):
-            b = x
-        else:
-            a = x
-        
-        iteration += 1
+        print(f'Na iteração {iteration}, foi atingido o valor aproximado da raiz: {x}')
 
-else:
-    print('Não há raízes reais neste intervalo.')
+        break
 
-print(f'A raiz aproximada dessa função é {x}, se encontra no intervalo [{a}, {b}], e foi encontrado após {iteration} iterações.')
+    if( f(a) * f(x) < 0):
+        b = x # b = 0.375
+    else:
+        a = x
+
+    
+    iteration+=1
+
+plt.grid()
+plt.scatter(x, f(x), c='blue') # destaca o ponto no gráfico que representa a raiz
+plt.plot( np.linspace(a-1, b+1, 1000), f(np.linspace(a-1, b+1, 1000)), c='purple')
