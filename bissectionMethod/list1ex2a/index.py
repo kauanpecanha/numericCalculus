@@ -1,5 +1,5 @@
 
-# método da bisseção(ou valor intermediário?)
+# método da bisseção
 
 a = float(input("Entre com o primeiro número do intervalo: "))
 b = float(input("Entre com o segundo número do intervalo: "))
