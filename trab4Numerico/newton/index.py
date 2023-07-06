@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 def dif_div_ordem(x, y): #Aqui sao realizadas as contas referentes a diferencas divididas de cada ordem (1 a 5, neste caso)
     coefs = [0.0, 0.0, 0.0, 0.0, 0.0]
     ddo1 = [0.0,0.0,0.0,0.0,0.0] #diferenca dividida de ordem 1
@@ -39,6 +41,8 @@ def polinomioNewton(coef, ponto, x, y):
     p5n = y[0] + termo1 + termo2 + termo3 + termo4 + termo5 #calculo para obter o valor do polinomio de newton, ja com o valor do ponto aplicado dentro dos termos.
     return p5n
 
+#Para descobrir a distancia no ponto 15
+
 x = [0, 3, 5, 8, 13, 17] #valores do tempo
 y = [0, 261, 339, 645, 993, 999] #valores da distancia
 
@@ -49,6 +53,16 @@ distancia_Px = polinomioNewton(coefs, distancia_x, x, y) #valor encontrado depoi
 print(f"Os coeficientes do polinomio encontrados são: {coefs}")
 print(f"A estimativa da posição do carro quando t = {distancia_x} é {distancia_Px:.2f}")
 
+#plotagem dos graficos da interpolacao
+
+plt.scatter(x,y)
+plt.plot(x,y)
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Y(X)")
+
+#Para descobrir a velocidade no ponto 15
+
 x = [0, 3, 5, 8, 13, 17] #valores do tempo
 y = [75, 77,62, 78, 72, 77] #valores da velocidade
 
@@ -57,3 +71,14 @@ velocidade_x = 15 #ponto dito na questao
 velocidade_Px = polinomioNewton(coefs, velocidade_x, x, y) #valor encontrado depois de aplicado o ponto do polinomio
 print(f"\n\nOs coeficientes do polinomio encontrados são: {coefs}")
 print(f"A estimativa da sua velocidade quando t = {velocidade_x} é {velocidade_Px:.2f}")
+
+#plotagem dos graficos da interpolacao
+
+plt.scatter(x,y)
+plt.plot(x,y)
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Y(X)")
+
+plt.tight_layout()
+plt.show()
